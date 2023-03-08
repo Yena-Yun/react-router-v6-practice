@@ -21,10 +21,10 @@ export const router = createBrowserRouter(
       element={<AuthLayout />}
       loader={() => defer({ userPromise: getUserData() })}
     >
-      <Route element={<HomeLayout />}>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/register' element={<SignUpPage />} />
+      <Route path='/' element={<HomeLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path='login' element={<LoginPage />} />
+        <Route path='register' element={<SignUpPage />} />
       </Route>
       <Route path='/dashboard' element={<ProtectedLayout />}>
         <Route path='profile' element={<ProfilePage />} />
