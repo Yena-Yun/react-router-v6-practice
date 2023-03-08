@@ -7,6 +7,7 @@ export const HomeLayout = () => {
   if (user) {
     return <Navigate to='/dashboard/profile' />;
   }
+
   return (
     <div>
       <nav>
