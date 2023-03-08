@@ -1,13 +1,10 @@
-import { createContext, useContext, useMemo, ReactNode } from 'react';
+import { createContext, useMemo, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from './useLocalStorage';
 import { User } from '../types/user';
+import { AuthContextValue } from '../types/auth';
 
-const defaultValue: {
-  user: User | null;
-  login: (data: User) => void;
-  logout: () => void;
-} = {
+const defaultValue: AuthContextValue = {
   user: null,
   login: () => {},
   logout: () => {},
@@ -15,8 +12,14 @@ const defaultValue: {
 
 export const AuthContext = createContext(defaultValue);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useLocalStorage('user', null);
+export const AuthProvider = ({
+  children,
+  userData,
+}: {
+  children: ReactNode;
+  userData: any;
+}) => {
+  const [user, setUser] = useLocalStorage('user', userData);
   const navigate = useNavigate();
 
   const login = async (data: User) => {
@@ -30,11 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const value = useMemo(
-    (): {
-      user: User | null;
-      login: (data: User) => void;
-      logout: () => void;
-    } => ({
+    (): AuthContextValue => ({
       user,
       login,
       logout,
