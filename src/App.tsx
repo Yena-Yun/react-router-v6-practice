@@ -10,6 +10,7 @@ import { ProtectedLayout } from './components/ProtectedLayout';
 import { getUserData } from './hooks/getUserData';
 import { HomePage } from './pages/Home';
 import { LoginPage } from './pages/Login';
+import { NotFound } from './pages/NotFound';
 import { ProfilePage } from './pages/Profile';
 import { SettingsPage } from './pages/Settings';
 import { SignUpPage } from './pages/SignUp';
@@ -30,6 +31,7 @@ export const router = createBrowserRouter(
         <Route path='profile' element={<ProfilePage />} />
         <Route path='settings' element={<SettingsPage />} />
       </Route>
+      <Route path='*' element={<NotFound />} />
     </Route>
   )
 );
