@@ -1,7 +1,13 @@
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  defer,
+} from 'react-router-dom';
+import { AuthLayout } from './components/AuthLayout';
 import { HomeLayout } from './components/HomeLayout';
 import { ProtectedLayout } from './components/ProtectedLayout';
+import { getUserData } from './hooks/getUserData';
 import { HomePage } from './pages/Home';
 import { LoginPage } from './pages/Login';
 import { ProfilePage } from './pages/Profile';
@@ -9,9 +15,12 @@ import { SettingsPage } from './pages/Settings';
 import { SignUpPage } from './pages/SignUp';
 import './styles.css';
 
-function App() {
-  return (
-    <Routes>
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      element={<AuthLayout />}
+      loader={() => defer({ userPromise: getUserData() })}
+    >
       <Route element={<HomeLayout />}>
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
@@ -21,8 +30,6 @@ function App() {
         <Route path='profile' element={<ProfilePage />} />
         <Route path='settings' element={<SettingsPage />} />
       </Route>
-    </Routes>
-  );
-}
-
-export default App;
+    </Route>
+  )
+);
