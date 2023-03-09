@@ -2,7 +2,7 @@ export const getUserData = () => {
   try {
     new Promise((resolve) =>
       setTimeout(() => {
-        const user = window.localStorage.getItem('user');
+        const user = localStorage.getItem('user');
         resolve(user);
       }, 3000)
     );

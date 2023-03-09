@@ -19,12 +19,12 @@ export const AuthProvider = ({
   children: ReactNode;
   userData: any;
 }) => {
-  const [user, setUser] = useLocalStorage('user', userData);
   const navigate = useNavigate();
+  const [user, setUser] = useLocalStorage('user', userData);
 
   const login = async (data: User) => {
     setUser(data);
-    navigate('/profile');
+    navigate('/dashboard/profile');
   };
 
   const logout = () => {
