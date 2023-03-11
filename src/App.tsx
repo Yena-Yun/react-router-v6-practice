@@ -18,9 +18,11 @@ import './styles.css';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
+    /* loader에서 반환되는 데이터로 SSR처럼 데이터를 미리 내려보낼 수 있음 */
+    /* 로그인이 됐는지 안 됐는지를 페이지 렌더링 전 미리 판단 */
     <Route
       element={<AuthLayout />}
-      loader={() => defer({ userPromise: getUserData() })}
+      loader={() => defer({ userPromise: getUserData() })} // defer를 붙이면 실행 후 아래 children 렌더링 (await 기능)
     >
       <Route path='/' element={<HomeLayout />}>
         <Route index element={<HomePage />} />

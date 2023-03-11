@@ -1,4 +1,4 @@
-import { createContext, useMemo, ReactNode } from 'react';
+import { createContext, useMemo, ReactNode, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from './useLocalStorage';
 import { User } from '../types/user';
@@ -43,3 +43,6 @@ export const AuthProvider = ({
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+
+/* Provider가 내려보낸 value를 하위 children에서 사용할 수 있게 함 */
+export const useAuth = () => useContext(AuthContext);

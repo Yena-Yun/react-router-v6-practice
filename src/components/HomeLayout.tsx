@@ -1,6 +1,7 @@
 import { Navigate, Link, Outlet } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../auth/AuthProvider';
 
+/* 로그인을 안 해도 접근 가능한 페이지 */
 export const HomeLayout = () => {
   const { user } = useAuth();
 
