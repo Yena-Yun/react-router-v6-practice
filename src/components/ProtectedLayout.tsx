@@ -12,8 +12,8 @@ export const ProtectedLayout = () => {
   return (
     <div>
       <nav>
-        <Link to='/profile'>Profile</Link>
-        <Link to='/settings'>Settings</Link>
+        <Link to='profile'>Profile</Link>
+        <Link to='settings'>Settings</Link>
       </nav>
       <Outlet />
     </div>
