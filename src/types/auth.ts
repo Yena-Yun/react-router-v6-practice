@@ -5,3 +5,8 @@ export interface AuthContextValue {
   login: (data: User) => void;
   logout: () => void;
 }
+
+export interface LoginResponse {
+  message: string;
+  token: string;
+}
